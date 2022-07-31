@@ -11,12 +11,15 @@ public class CountryOriginal {
         for(int i=0; i<country.length; i++) {
         	countryCases[i]=new CountryCases(confirmedCases[i], country[i]);
         }
-        bubbleSort(countryCases);
+        //bubbleSort(countryCases);
+        //insertionSort(countryCases);
+        selectionSort(countryCases);
         
         
 	}	
 	
 	public static void bubbleSort(CountryCases[] countryCases) {
+		System.out.println("Bubble Sort :");
 		long startTime=System.currentTimeMillis();
 		boolean swap=false;
 		CountryCases temp;
@@ -38,6 +41,47 @@ public class CountryOriginal {
 		printData(countryCases);
 		
 		System.out.println("Time taken: "+(double)(endTime-startTime)+" ms");
+	}
+
+	public static void insertionSort(CountryCases[] countryCases) {
+		System.out.println("Insertion Sort: ");
+		long startTime=System.currentTimeMillis();
+		
+		for(int i=1; i<countryCases.length; i++) {
+			int j=i-1;
+			CountryCases key=countryCases[i];
+			while(j>=0 && key.getConfirmedCases()<countryCases[j].getConfirmedCases()) {
+				countryCases[j+1]=countryCases[j];
+				j=j-1;				
+			}
+
+			countryCases[j+1]=key;
+		}
+		long stopTime=System.currentTimeMillis();
+		printData(countryCases);
+		System.out.println("Time taken: "+(double)(stopTime-startTime)+" ms");
+		
+	}
+	
+	public static void selectionSort(CountryCases[] countryCases) {
+		System.out.println("Selection Sort: ");
+		long startTime=System.currentTimeMillis();
+		int countryCasesLength=countryCases.length;
+		for(int i=0; i<countryCasesLength-1;i++) {
+			int minIndex=i;
+			for(int j=i+1; j<countryCasesLength;j++) {
+				if(countryCases[minIndex].getConfirmedCases()>countryCases[j].getConfirmedCases()) {
+					minIndex=j;
+				}
+			}if(minIndex!=i) {
+				CountryCases tempCases=countryCases[minIndex];
+				countryCases[minIndex]=countryCases[i];
+				countryCases[i]=tempCases;
+			}			
+		}
+		long stopTime=System.currentTimeMillis();
+		printData(countryCases);
+		System.out.println("Time taken: "+(double)(stopTime-startTime)+" ms");
 	}
 	
 
