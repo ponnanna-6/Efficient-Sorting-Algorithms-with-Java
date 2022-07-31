@@ -11,13 +11,13 @@ public class CountryOriginal {
         for(int i=0; i<country.length; i++) {
         	countryCases[i]=new CountryCases(confirmedCases[i], country[i]);
         }
-        //bubbleSort(countryCases);
+        bubbleSort(countryCases);
         
         
 	}	
 	
 	public static void bubbleSort(CountryCases[] countryCases) {
-		long startTime=System.nanoTime();
+		long startTime=System.currentTimeMillis();
 		boolean swap=false;
 		CountryCases temp;
 		for(int i=0; i<countryCases.length-1; i++) {
@@ -34,9 +34,10 @@ public class CountryOriginal {
 				break;
 			}	
 		}
+		long endTime=System.currentTimeMillis();
 		printData(countryCases);
-		long endTime=System.nanoTime();
-		System.out.println("Time taken: "+(double)(endTime-startTime)/1000+" ns");
+		
+		System.out.println("Time taken: "+(double)(endTime-startTime)+" ms");
 	}
 	
 
